@@ -15,6 +15,8 @@ abstract class BaseDecoder {
   /// The name of the decoder.
   String get decoderName;
 
+  bool get checkFooterIsValid => true;
+
   /// {@template image_size_getter.BaseDecoder.isValid}
   ///
   /// Returns the [input] is support or not.
@@ -198,7 +200,7 @@ mixin MutilFileHeaderAndFooterValidator on BaseDecoder {
           footer,
           fileFooter,
         );
-        if (headerEquals && footerEquals) {
+        if (headerEquals && (!checkFooterIsValid || footerEquals)) {
           return true;
         }
       }

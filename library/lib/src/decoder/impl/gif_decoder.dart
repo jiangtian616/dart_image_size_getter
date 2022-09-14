@@ -11,6 +11,9 @@ class GifDecoder extends BaseDecoder with MutilFileHeaderAndFooterValidator {
 
   String get decoderName => 'gif';
 
+  @override
+  bool get checkFooterIsValid => false;
+
   Size _getSize(List<int> widthList, List<int> heightList) {
     final width = convertRadix16ToInt(widthList, reverse: true);
     final height = convertRadix16ToInt(heightList, reverse: true);
